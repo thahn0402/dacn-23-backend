@@ -1,4 +1,4 @@
-/*
+
 
 1. Hài kịch
 
@@ -159,4 +159,3 @@ Câu hỏi tu từ là câu hỏi không dùng để hỏi mà để khẳng đ�
 Nghĩa tường minh là nghĩa được diễn đạt trực tiếp bằng các từ ngữ trong câu. Nghĩa hàm ẩn là nghĩa được suy ra từ nghĩa tường minh của cả câu, từ nghĩa của từ ngữ trong câu và từ ngữ cảnh sử dụng câu.
 
 Xem thêm các bài Soạn văn lớp 8 Kết nối tri thức hay nhất, ngắn gọn khác:
-*/
