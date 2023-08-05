@@ -8,41 +8,31 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @Column(name = "id")
     private Integer productId;
+    @Column(name = "name")
     private String productName;
-    @Column(length = 2000)
-
+    @Column(length = 2000, name = "description")
     private String productDescription;
+    @Column(name = "discounted price")
     private Double productDiscountedPrice;
+    @Column(name = "actual price")
     private Double productActualPrice;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 
     @JoinTable(name = "product_images",
-
-            joinColumns = {
-                    @JoinColumn(name = "product_id")
-
-
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(name = "image_id")
-
-            }
-    )
+            joinColumns = {@JoinColumn(name = "product_id")},
+            inverseJoinColumns = {@JoinColumn(name = "image_id")})
     private Set<ImageModel> productImages;
-
 
     public Set<ImageModel> getProductImages() {
         return productImages;
     }
 
-
     public void setProductImages(Set<ImageModel> productImages) {
         this.productImages = productImages;
     }
-
 
     public Integer getProductId() {
         return productId;
