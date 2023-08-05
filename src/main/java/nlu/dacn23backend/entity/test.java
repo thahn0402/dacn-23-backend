@@ -12,7 +12,8 @@ public class User {
     private String userLastName;
     private String userPassword;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "USER_ROLE",
+    @JoinTable(name = "USER_ROLE
+    Văn bản vô đây",
             joinColumns = {
                     @JoinColumn(name = "USER_ID")
             },
