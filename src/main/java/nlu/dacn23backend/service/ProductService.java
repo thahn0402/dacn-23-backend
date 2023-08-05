@@ -10,9 +10,12 @@ import nlu.dacn23backend.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,6 +70,19 @@ public class ProductService {
             List<Cart> carts = cartDao.findByUser(user);
 
             return carts.stream().map(x -> x.getProduct()).collect(Collectors.toList());
+        }
+    }
+    public List<Product> sortProducts(String sortType) {
+        if (sortType.equals("name_asc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.ASC, "name"));
+        } else if (sortType.equals("name_desc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.DESC, "name"));
+        } else if (sortType.equals("price_asc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.ASC, "price"));
+        } else if (sortType.equals("price_desc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.DESC, "price"));
+        } else {
+            return (List<Product>) productDao.findAll();
         }
     }
 }

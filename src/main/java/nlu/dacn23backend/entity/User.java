@@ -7,9 +7,13 @@ import java.util.Set;
 public class User {
 
     @Id
+    @Column(name = "username")
     private String userName;
+    @Column(name = "first name")
     private String userFirstName;
+    @Column(name = "last name")
     private String userLastName;
+    @Column(name = "password")
     private String userPassword;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE",
