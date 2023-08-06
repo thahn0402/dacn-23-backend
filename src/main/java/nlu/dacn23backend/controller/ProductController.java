@@ -5,6 +5,7 @@ import nlu.dacn23backend.entity.Product;
 import nlu.dacn23backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -70,5 +71,9 @@ public class ProductController {
     public List<Product> getProductDetails(@PathVariable(name = "isSingleProductCheckout") boolean isSingleProductCheckout,
                                            @PathVariable(name = "productId") Integer productId) {
         return productService.getProductDetails(isSingleProductCheckout, productId);
+    }
+    @PostMapping("/sort")
+    public List<Product> sortProducts(@RequestParam("sortType") String sortType) {
+        return  productService.sortProducts(sortType);
     }
 }
