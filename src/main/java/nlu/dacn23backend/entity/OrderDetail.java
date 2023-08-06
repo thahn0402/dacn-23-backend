@@ -8,13 +8,18 @@ public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer orderId;
+    @Column(name = "order fullname")
     private String orderFullName;
+    @Column(name = "order full name")
     private String orderFullOrder;
+    @Column(name = "order full order")
     private String orderContactNumber;
+    @Column(name = "order contact dumber")
     private String orderAlternateContactNumber;
+    @Column(name = "order status")
     private String orderStatus;
+    @Column(name = "order amount")
     private Double orderAmount;
-
     @OneToOne
     private Product product;
     @OneToOne
