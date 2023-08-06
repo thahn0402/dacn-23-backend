@@ -79,8 +79,6 @@ public class OrderDetailService {
                     x -> orderDetails.add(x)
             );
         }
-
-
         return orderDetails;
     }
 
