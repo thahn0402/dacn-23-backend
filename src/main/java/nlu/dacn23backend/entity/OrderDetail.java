@@ -18,7 +18,7 @@ public class OrderDetail {
     private String orderAlternateContactNumber;
     @Column(name = "order status")
     private String orderStatus;
-    @Column(name = "order amount")
+    @Column(name = "order amount") 
     private Double orderAmount;
     @OneToOne
     private Product product;

@@ -21,7 +21,7 @@ public class User {
                     @JoinColumn(name = "USER_ID")
             },
             inverseJoinColumns = {
-                    @JoinColumn(name = "ROLE_ID")
+                    @JoinColumn(name = "ROLE_ID") 
             }
     )
     private Set<Role> role;

@@ -21,4 +21,4 @@ public class OrderProductQuantity {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
-}
+} 

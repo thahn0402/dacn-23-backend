@@ -21,7 +21,7 @@ public class OrderInput {
     public String getFullAddress() {
         return fullAddress;
     }
-
+ 
     public void setFullAddress(String fullAddress) {
         this.fullAddress = fullAddress;
     }

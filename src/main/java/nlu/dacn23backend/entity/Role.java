@@ -18,7 +18,7 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public String getRoleDescription() {
+    public String getRoleDescription() { 
         return roleDescription;
     }
 

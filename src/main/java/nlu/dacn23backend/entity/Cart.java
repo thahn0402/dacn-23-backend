@@ -14,7 +14,7 @@ public class Cart {
     @OneToOne
     private User user;
 
-    public Cart() {
+    public Cart() { 
     }
 
     public Cart(Product product, User user) {

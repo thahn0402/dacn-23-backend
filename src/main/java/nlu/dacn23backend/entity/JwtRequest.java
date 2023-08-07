@@ -16,7 +16,7 @@ public class JwtRequest {
     public String getUserPassword() {
         return userPassword;
     }
-
+ 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }

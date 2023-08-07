@@ -14,7 +14,7 @@ public class ImageModel {
     @Column(length = 5000000)
     private byte[] picByte;
 
-    public ImageModel() {
+    public ImageModel() { 
     }
 
     public ImageModel(String name, String type, byte[] picByte) {

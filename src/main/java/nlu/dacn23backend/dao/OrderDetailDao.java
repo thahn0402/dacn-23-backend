@@ -11,3 +11,4 @@ public interface OrderDetailDao extends CrudRepository<OrderDetail, Integer> {
 
     public List<OrderDetail> findByOrderStatus(String status);
 }
+ 

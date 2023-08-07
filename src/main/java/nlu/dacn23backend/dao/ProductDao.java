@@ -16,4 +16,4 @@ public interface ProductDao extends CrudRepository<Product, Integer> {
             String key1, String key2, Pageable pageable
     );
 
-}
+} 
