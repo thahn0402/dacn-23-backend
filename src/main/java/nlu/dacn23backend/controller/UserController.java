@@ -15,7 +15,7 @@ import javax.annotation.PostConstruct;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserService userService; 
 
     @PostConstruct
     public void initRoleAndUser() {
