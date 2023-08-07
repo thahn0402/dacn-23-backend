@@ -23,7 +23,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public void initRoleAndUser() {
+    public void initRoleAndUser() { 
 
         Role adminRole = new Role();
         adminRole.setRoleName("Admin");

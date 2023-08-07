@@ -23,7 +23,7 @@ public class OrderDetailService {
     @Autowired
     private ProductDao productDao;
 
-    @Autowired
+    @Autowired 
     private UserDao userDao;
 
     @Autowired

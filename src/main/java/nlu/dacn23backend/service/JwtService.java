@@ -22,7 +22,7 @@ import java.util.Set;
 @Service
 public class JwtService implements UserDetailsService {
 
-    @Autowired
+    @Autowired 
     private JwtUtil jwtUtil;
 
     @Autowired

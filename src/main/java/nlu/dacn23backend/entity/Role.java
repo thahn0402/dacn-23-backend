@@ -20,7 +20,7 @@ public class Role {
 
     public String getRoleDescription() { 
         return roleDescription;
-    }
+    } 
 
     public void setRoleDescription(String roleDescription) {
         this.roleDescription = roleDescription;

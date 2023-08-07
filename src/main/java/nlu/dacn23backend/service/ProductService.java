@@ -24,7 +24,7 @@ public class ProductService {
 
     @Autowired
     private ProductDao productDao;
-
+ 
     @Autowired
     private UserDao userDao;
 
