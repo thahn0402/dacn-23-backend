@@ -17,14 +17,19 @@ import java.util.stream.Collectors;
 public class CartService {
 
     @Autowired
-    private CartDao cartDao;
-
+    private UserDao userDao;
     @Autowired 
     private ProductDao productDao;
 
-    @Autowired
-    private UserDao userDao;
 
+    @Autowired
+    private CartDao cartDao;
+
+
+
+    public void deleteCartItem(Integer cartId){
+        cartDao.deleteById(cartId);
+    }
     public Cart addToCart(Integer productId) {
         Product product = productDao.findById(productId).get();
 
@@ -34,7 +39,7 @@ public class CartService {
         if (currentUser != null) {
             user = userDao.findById(currentUser).get();
         }
-
+// List<Cart> filteredList = carts.stream().filter(x -> x.getProduct().getProductId())
         List<Cart> carts = cartDao.findByUser(user);
         List<Cart> filteredList = carts.stream().filter(x -> x.getProduct().getProductId() == productId).collect(Collectors.toList());
 
@@ -48,15 +53,19 @@ public class CartService {
         }
         return null;
     }
-
-    public void deleteCartItem(Integer cartId){
-        cartDao.deleteById(cartId);
-    }
-
+   /* public List<Cart> Details() {
+        String currentUser = JwtRequestFilter.CURRENT_USER;
+        User u = new User();
+        u.
+        User user = userDao.findAll();
+        return cartDao.findByUser(user);
+    }*/
     public List<Cart> getCartDetails() {
         String currentUser = JwtRequestFilter.CURRENT_USER;
         User user = userDao.findById(currentUser).get();
         return cartDao.findByUser(user);
     }
+
+
 
 }

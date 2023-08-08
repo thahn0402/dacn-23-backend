@@ -23,7 +23,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public void initRoleAndUser() { 
+    public void initRoleAndUser() {
 
         Role adminRole = new Role();
         adminRole.setRoleName("Admin");
@@ -35,6 +35,16 @@ public class UserService {
         userRole.setRoleDescription("Default role for newly created record");
         roleDao.save(userRole);
 
+        User user = new User();
+        user.setUserName("thanh123");
+        user.setUserPassword(getEncodedPassword("thanh@pass"));
+        user.setUserFirstName("thanh");
+        user.setUserLastName("nguyen");
+        Set<Role> userRoles = new HashSet<>();
+        userRoles.add(userRole);
+        user.setRole(userRoles);
+        userDao.save(user);
+
         User adminUser = new User();
         adminUser.setUserName("admin123");
         adminUser.setUserPassword(getEncodedPassword("admin@pass"));
@@ -45,15 +55,7 @@ public class UserService {
         adminUser.setRole(adminRoles);
         userDao.save(adminUser);
 
-        User user = new User();
-        user.setUserName("thanh123");
-        user.setUserPassword(getEncodedPassword("thanh@pass"));
-        user.setUserFirstName("thanh");
-        user.setUserLastName("nguyen");
-        Set<Role> userRoles = new HashSet<>();
-        userRoles.add(userRole);
-        user.setRole(userRoles);
-        userDao.save(user);
+
     }
 
     public User registerNewUser(User user) {
@@ -85,4 +87,16 @@ public class UserService {
 //    public String getEncodedPassword(String password) {
 //        return passwordEncoder.encode(password);
 //    }
+    //public UserDto getUserById(Long id) {
+    //        return userRepository.findById(id).map(userDTOMapper::apply).orElse(null);
+    //    }
+    //    public List<ArticleDto> getArticleFollows(String email){
+    //        User user = userRepository.findByEmail(email).get();
+    //             //   .orElseThrow(() -> new RuntimeException("User not found"));
+    //            // Trả về danh sách bài viết mà người dùng đã follow
+    //            return user.getFavoriteArticles().stream()
+    //                    .map(FavoriteArticle::getArticle)
+    //                    .collect(Collectors.toList()).stream().map(articleDTOMapper::apply).collect(Collectors.toList());
+    //
+    //        }
 }

@@ -24,12 +24,40 @@ public class ProductService {
 
     @Autowired
     private ProductDao productDao;
- 
+    @Autowired
+    private CartDao cartDao;
+
     @Autowired
     private UserDao userDao;
 
-    @Autowired
-    private CartDao cartDao;
+    // public Product getProductDetailsById(Integer productId) {
+    //        return productDao.findById(productId).get();
+    //    }
+
+    public Product getProductDetailsById(Integer productId) {
+        return productDao.findById(productId).get();
+    }
+
+
+    public List<Product> sortProducts(String sortType) {
+        if (sortType.equals("name_asc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.ASC, "name"));
+        } else if (sortType.equals("name_desc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.DESC, "name"));
+        } else if (sortType.equals("price_asc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.ASC, "price"));
+        } else if (sortType.equals("price_desc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.DESC, "price"));
+        } else {
+            return (List<Product>) productDao.findAll();
+        }
+    }
+    public void deleteProductDetails(Integer productId) {
+        productDao.deleteById(productId);
+    }
+
+
+
 
     public Product addNewProduct(Product product) {
         return productDao.save(product);
@@ -40,6 +68,7 @@ public class ProductService {
 
         if (searchKey.equals("")) {
             return (List<Product>) productDao.findAll(pageable);
+
         } else {
             return (List<Product>) productDao.findByProductNameContainingIgnoreCaseOrProductDescriptionContainingIgnoreCase(
                     searchKey, searchKey, pageable
@@ -47,15 +76,19 @@ public class ProductService {
         }
 
     }
-
-    public void deleteProductDetails(Integer productId) {
-        productDao.deleteById(productId);
-    }
-
-    public Product getProductDetailsById(Integer productId) {
-        return productDao.findById(productId).get();
-    }
-
+   /* public List<Product> sortProducts(String sortType) {
+        if (sortType.equals("name_asc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.ASC, "name"));
+        } else if (sortType.equals("name_desc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.DESC, "name"));
+        } else if (sortType.equals("price_asc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.ASC, "price"));
+        } else if (sortType.equals("price_desc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.DESC, "price"));
+        } else {
+            return (List<Product>) productDao.findAll();
+        }
+    }*/
     public List<Product> getProductDetails(boolean isSingleProductCheckout, Integer productId) {
         if (isSingleProductCheckout && productId != 0) {
             //mua mot san pham
@@ -72,17 +105,5 @@ public class ProductService {
             return carts.stream().map(x -> x.getProduct()).collect(Collectors.toList());
         }
     }
-    public List<Product> sortProducts(String sortType) {
-        if (sortType.equals("name_asc")) {
-            return productDao.findAll((Pageable) Sort.by(Sort.Direction.ASC, "name"));
-        } else if (sortType.equals("name_desc")) {
-            return productDao.findAll((Pageable) Sort.by(Sort.Direction.DESC, "name"));
-        } else if (sortType.equals("price_asc")) {
-            return productDao.findAll((Pageable) Sort.by(Sort.Direction.ASC, "price"));
-        } else if (sortType.equals("price_desc")) {
-            return productDao.findAll((Pageable) Sort.by(Sort.Direction.DESC, "price"));
-        } else {
-            return (List<Product>) productDao.findAll();
-        }
-    }
+
 }

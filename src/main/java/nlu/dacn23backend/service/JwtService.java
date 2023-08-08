@@ -22,26 +22,28 @@ import java.util.Set;
 @Service
 public class JwtService implements UserDetailsService {
 
-    @Autowired 
-    private JwtUtil jwtUtil;
-
-    @Autowired
-    private UserDao userDao;
 
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private UserDao userDao;
+    @Autowired
+    private JwtUtil jwtUtil;
 
-    public JwtResponse createJwtToken(JwtRequest jwtRequest) throws Exception {
-        String userName = jwtRequest.getUserName();
+
+    /*public JwtResponse JwtToken(JwtRequest jwtRequest) throws Exception {
+
         String userPassword = jwtRequest.getUserPassword();
+        String userName = jwtRequest.getUserName();
         authenticate(userName, userPassword);
 
         UserDetails userDetails = loadUserByUsername(userName);
-        String newGeneratedToken = jwtUtil.generateToken(userDetails);
+
+
 
         User user = userDao.findById(userName).get();
         return new JwtResponse(user, newGeneratedToken);
-    }
+    }*/
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -57,14 +59,20 @@ public class JwtService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
     }
+    public JwtResponse createJwtToken(JwtRequest jwtRequest) throws Exception {
 
-    private Set getAuthority(User user) {
-        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-        user.getRole().forEach(role -> {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleName()));
-        });
-        return authorities;
+        String userPassword = jwtRequest.getUserPassword();
+        String userName = jwtRequest.getUserName();
+        authenticate(userName, userPassword);
+
+        UserDetails userDetails = loadUserByUsername(userName);
+
+        String newGeneratedToken = jwtUtil.generateToken(userDetails);
+
+        User user = userDao.findById(userName).get();
+        return new JwtResponse(user, newGeneratedToken);
     }
+
 
     private void authenticate(String userName, String userPassword) throws Exception {
         try {
@@ -74,5 +82,12 @@ public class JwtService implements UserDetailsService {
         } catch (BadCredentialsException e) {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
+    }
+    private Set getAuthority(User user) {
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+        user.getRole().forEach(role -> {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleName()));
+        });
+        return authorities;
     }
 }
