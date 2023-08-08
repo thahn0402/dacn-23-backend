@@ -58,22 +58,7 @@ public class ProductService {
 
 
 
-    public List<Product> getProductDetails(boolean isSingleProductCheckout, Integer productId) {
-        if (isSingleProductCheckout && productId != 0) {
-            //mua mot san pham
-            List<Product> list = new ArrayList<>();
-            Product product = productDao.findById(productId).get();
-            list.add(product);
-            return list;
-        } else {
-            //checkout gio hang
-            String currentUser = JwtRequestFilter.CURRENT_USER;
-            User user = userDao.findById(currentUser).get();
-            List<Cart> carts = cartDao.findByUser(user);
 
-            return carts.stream().map(x -> x.getProduct()).collect(Collectors.toList());
-        }
-    }
     public Product addNewProduct(Product product) {
         return productDao.save(product);
     }
@@ -90,6 +75,35 @@ public class ProductService {
             );
         }
 
+    }
+   /* public List<Product> sortProducts(String sortType) {
+        if (sortType.equals("name_asc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.ASC, "name"));
+        } else if (sortType.equals("name_desc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.DESC, "name"));
+        } else if (sortType.equals("price_asc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.ASC, "price"));
+        } else if (sortType.equals("price_desc")) {
+            return productDao.findAll((Pageable) Sort.by(Sort.Direction.DESC, "price"));
+        } else {
+            return (List<Product>) productDao.findAll();
+        }
+    }*/
+    public List<Product> getProductDetails(boolean isSingleProductCheckout, Integer productId) {
+        if (isSingleProductCheckout && productId != 0) {
+            //mua mot san pham
+            List<Product> list = new ArrayList<>();
+            Product product = productDao.findById(productId).get();
+            list.add(product);
+            return list;
+        } else {
+            //checkout gio hang
+            String currentUser = JwtRequestFilter.CURRENT_USER;
+            User user = userDao.findById(currentUser).get();
+            List<Cart> carts = cartDao.findByUser(user);
+
+            return carts.stream().map(x -> x.getProduct()).collect(Collectors.toList());
+        }
     }
 
 }
