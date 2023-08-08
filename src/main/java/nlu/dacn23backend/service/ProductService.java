@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator; 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +24,7 @@ public class ProductService {
 
     @Autowired
     private ProductDao productDao;
- 
+
     @Autowired
     private UserDao userDao;
 
@@ -32,6 +32,7 @@ public class ProductService {
     private CartDao cartDao;
 
     public Product addNewProduct(Product product) {
+
         return productDao.save(product);
     }
 
@@ -72,6 +73,7 @@ public class ProductService {
             return carts.stream().map(x -> x.getProduct()).collect(Collectors.toList());
         }
     }
+
     public List<Product> sortProducts(String sortType) {
         if (sortType.equals("name_asc")) {
             return productDao.findAll((Pageable) Sort.by(Sort.Direction.ASC, "name"));
