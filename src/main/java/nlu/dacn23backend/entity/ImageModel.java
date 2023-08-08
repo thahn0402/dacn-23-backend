@@ -19,11 +19,7 @@ public class ImageModel {
 
     }
 
-    public ImageModel(String name, String type, byte[] picByte) {
-        this.name = name;
-        this.type = type;
-        this.picByte = picByte;
-    }
+
 
     public String getType() {
         return type;
@@ -48,7 +44,11 @@ public class ImageModel {
     }
 
 
-
+    public ImageModel(String name, String type, byte[] picByte) {
+        this.name = name;
+        this.type = type;
+        this.picByte = picByte;
+    }
 
 
     public void setType(String type) {

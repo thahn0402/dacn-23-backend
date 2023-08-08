@@ -36,6 +36,22 @@ public class ProductController {
         }
     }
 
+    @PreAuthorize("hasRole('Admin')")
+    @DeleteMapping({"/deleteProductDetails/{productId}"})
+    public void deleteProductDetails(@PathVariable("productId") Integer productId) {
+        productService.deleteProductDetails(productId);
+    }
+
+    @GetMapping({"/getAllProducts"})
+    public List<Product> getAllProducts(@RequestParam(defaultValue = "0") int pageNumber,
+                                        @RequestParam(defaultValue = "") String searchKey) {
+        return productService.getAllProducts(pageNumber, searchKey);
+    }
+
+    @GetMapping({"/getProductDetailsById/{productId}"})
+    public Product getProductDetailsById(@PathVariable("productId") Integer productId) {
+        return productService.getProductDetailsById(productId);
+    }
     public Set<ImageModel> uploadImage(MultipartFile[] multipartFiles) throws IOException {
         Set<ImageModel> imageModels = new HashSet<>();
         for (MultipartFile file : multipartFiles) {
@@ -49,31 +65,16 @@ public class ProductController {
         return imageModels;
     }
 
-    @GetMapping({"/getAllProducts"})
-    public List<Product> getAllProducts(@RequestParam(defaultValue = "0") int pageNumber,
-                                        @RequestParam(defaultValue = "") String searchKey) {
-        return productService.getAllProducts(pageNumber, searchKey);
-    }
 
-    @GetMapping({"/getProductDetailsById/{productId}"})
-    public Product getProductDetailsById(@PathVariable("productId") Integer productId) {
-        return productService.getProductDetailsById(productId);
-    }
 
-    @PreAuthorize("hasRole('Admin')")
-    @DeleteMapping({"/deleteProductDetails/{productId}"})
-    public void deleteProductDetails(@PathVariable("productId") Integer productId) {
-        productService.deleteProductDetails(productId);
+    @PostMapping("/sort")
+    public List<Product> sortProducts(@RequestParam("sortType") String sortType) {
+        return  productService.sortProducts(sortType);
     }
-
     @PreAuthorize("hasRole('User')")
     @GetMapping({"/getProductDetails/{isSingleProductCheckout}/{productId}"})
     public List<Product> getProductDetails(@PathVariable(name = "isSingleProductCheckout") boolean isSingleProductCheckout,
                                            @PathVariable(name = "productId") Integer productId) {
         return productService.getProductDetails(isSingleProductCheckout, productId);
-    }
-    @PostMapping("/sort")
-    public List<Product> sortProducts(@RequestParam("sortType") String sortType) {
-        return  productService.sortProducts(sortType);
     }
 }
