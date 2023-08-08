@@ -1,5 +1,8 @@
 package nlu.dacn23backend.entity;
-
+//@Data
+//@Builder
+//@NoArgsConstructor
+//@AllArgsConstructor
 
 public class OrderProductQuantity {
 

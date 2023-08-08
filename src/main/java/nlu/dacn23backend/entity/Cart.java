@@ -1,7 +1,10 @@
 package nlu.dacn23backend.entity;
 
 import javax.persistence.*;
-
+//@Data
+//@Builder
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Entity
 @Table
 public class Cart {

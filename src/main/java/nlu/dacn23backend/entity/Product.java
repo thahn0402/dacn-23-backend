@@ -2,11 +2,15 @@ package nlu.dacn23backend.entity;
 
 import javax.persistence.*;
 import java.util.Set;
-
+//@Data
+//@Builder
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Entity
 public class Product {
 
     @Id
+   // @GeneratedValue
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Integer productId;
@@ -29,19 +33,6 @@ public class Product {
     public Set<ImageModel> getProductImages() {
         return productImages;
     }
-
-    public void setProductImages(Set<ImageModel> productImages) {
-        this.productImages = productImages;
-    }
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
-
     public String getProductName() {
         return productName;
     }
@@ -61,11 +52,24 @@ public class Product {
     public Double getProductDiscountedPrice() {
         return productDiscountedPrice;
     }
+    public void setProductImages(Set<ImageModel> productImages) {
+        this.productImages = productImages;
+    }
+
+
+
+
 
     public void setProductDiscountedPrice(Double productDiscountedPrice) {
         this.productDiscountedPrice = productDiscountedPrice;
     }
+    public Integer getProductId() {
+        return productId;
+    }
 
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
     public Double getProductActualPrice() {
         return productActualPrice;
     }
