@@ -10,10 +10,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.util.HashSet;
-import java.util.List; 
-import java.util.Set; 
+import java.util.List;
+import java.util.Set;
 
 @RestController
 public class ProductController {
@@ -72,8 +72,9 @@ public class ProductController {
                                            @PathVariable(name = "productId") Integer productId) {
         return productService.getProductDetails(isSingleProductCheckout, productId);
     }
+
     @PostMapping("/sort")
     public List<Product> sortProducts(@RequestParam("sortType") String sortType) {
-        return  productService.sortProducts(sortType);
+        return productService.sortProducts(sortType);
     }
 }

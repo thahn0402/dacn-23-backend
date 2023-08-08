@@ -23,7 +23,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public void initRoleAndUser() { 
+    public void initRoleAndUser() {
 
         Role adminRole = new Role();
         adminRole.setRoleName("Admin");
@@ -69,6 +69,7 @@ public class UserService {
     }
 
     public String getEncodedPassword(String password) {
+
         return passwordEncoder.encode(password);
     }
 

@@ -15,7 +15,7 @@ import javax.annotation.PostConstruct;
 public class UserController {
 
     @Autowired
-    private UserService userService; 
+    private UserService userService;
 
     @PostConstruct
     public void initRoleAndUser() {
@@ -27,10 +27,6 @@ public class UserController {
         return userService.registerNewUser(user);
     }
 
-//    @PostMapping({"/registerNewUser"})
-//    public User registerNewUser(@RequestBody User user) {
-//        return userService.registerNewUser(user);
-//    }
 
     @GetMapping({"/forAdmin"})
     @PreAuthorize("hasRole('Admin')")
